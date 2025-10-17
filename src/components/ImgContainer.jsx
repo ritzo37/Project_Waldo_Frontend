@@ -1,4 +1,4 @@
-import islandImage from "./img/island.png";
+import islandImage from "../img/island.png";
 import Timer from "./Timer";
 import styles from "./ImgContainer.module.css";
 import { useState, useRef, useEffect } from "react";
@@ -12,6 +12,7 @@ function ImgContainer({ itemsToSearch }) {
   const [item2Status, changeItem2Status] = useState(false);
   const [item3Status, changeItem3Status] = useState(false);
   const [finishTime, changeFinishTime] = useState();
+  const [imgCords, setImgCords] = useState({ cordX: 0, cordY: 0 });
 
   useEffect(() => {
     const stop = async () => {
@@ -26,7 +27,6 @@ function ImgContainer({ itemsToSearch }) {
     }
   }, [item1Status, item2Status, item3Status]);
 
-  const [imgCords, setImgCords] = useState({ cordX: 0, cordY: 0 });
   function handleClick(e) {
     const element = document.getElementById("absDiv");
     if (element) {
@@ -70,7 +70,7 @@ function ImgContainer({ itemsToSearch }) {
         toast.success(`You found out ${itemsToSearch[2]} !`);
       }
     } else {
-      toast.info("Oops please try again!");
+      toast.error("Oops please try again!");
     }
   }
 
