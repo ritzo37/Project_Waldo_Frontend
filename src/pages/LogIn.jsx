@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import styles from "./LogIn.module.css";
 const logInUrl = import.meta.env.VITE_BASEURL + "/log-in";
 export default function LogIn() {
   const [username, setUsername] = useState("");
@@ -34,9 +35,10 @@ export default function LogIn() {
     }
   }
   return (
-    <>
+    <div className={styles.formContainer}>
+      <h1>Log In</h1>
       {error.length > 0 && <p>{error}</p>}
-      <form onSubmit={handleFormSubmit}>
+      <form className={styles.form} onSubmit={handleFormSubmit}>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -53,9 +55,8 @@ export default function LogIn() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
         <button>Submit</button>
       </form>
-    </>
+    </div>
   );
 }

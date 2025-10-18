@@ -1,0 +1,17 @@
+.loggedInUserId {
+  color: red;
+}
+.tableContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+table,
+th,
+td {
+  margin: 2%;
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}

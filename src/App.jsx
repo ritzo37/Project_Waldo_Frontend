@@ -1,17 +1,19 @@
 import { Link, Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import styles from "./App.module.css";
 export default function App() {
   return (
     <>
-      <div className="header">
+      <header className={styles.header}>
         <h1>Project Waldo</h1>
+        <Link to="/">Home</Link>
         <Link to="/img-page">Game</Link>
         <Link to="/sign-up">SignUp</Link>
         <Link to="/log-in">LogIn</Link>
         <Link to="/leaderboard">LeaderBoard</Link>
-      </div>
-      <ToastContainer position="top-right" autoClose={2000} />
+      </header>
       <Outlet></Outlet>
+      <ToastContainer position="top-right" autoClose={2000} />
     </>
   );
 }

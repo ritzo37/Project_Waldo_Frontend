@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import styles from "./SignUp.module.css";
 const signUpUrl = import.meta.env.VITE_BASEURL + "/sign-up";
 export default function SignUp() {
   const [username, setUsername] = useState("");
@@ -27,7 +28,8 @@ export default function SignUp() {
     }
   }
   return (
-    <>
+    <div className={styles.formContainer}>
+      <h1>Sign Up</h1>
       {errors.length > 0 && (
         <ul>
           {errors.map((currError) => {
@@ -35,8 +37,8 @@ export default function SignUp() {
           })}
         </ul>
       )}
-      <form onSubmit={handleFormSubmit}>
-        <label htmlFor="username">Username</label>
+      <form onSubmit={handleFormSubmit} className={styles.form}>
+        <label htmlFor="username">Username</label>{" "}
         <input
           type="text"
           name="username"
@@ -44,7 +46,7 @@ export default function SignUp() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Password </label>
         <input
           type="text"
           name="password"
@@ -60,9 +62,8 @@ export default function SignUp() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassWord(e.target.value)}
         />
-
         <button>Submit</button>
       </form>
-    </>
+    </div>
   );
 }

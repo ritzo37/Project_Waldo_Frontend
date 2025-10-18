@@ -1,0 +1,14 @@
+.heading {
+  display: flex;
+  justify-content: center;
+}
+.instructionsDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 50px;
+}
+
+.instructionsDiv p {
+  font-size: large;
+}

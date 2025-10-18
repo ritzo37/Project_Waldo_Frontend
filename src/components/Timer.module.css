@@ -1,0 +1,12 @@
+.container {
+  margin: 2%;
+}
+.container button {
+  border: 2px solid black;
+  background: none;
+  padding: 5px;
+}
+.container button:hover {
+  box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
+}

@@ -99,15 +99,14 @@ function ImgContainer({
   if (item1Status && item2Status && item3Status) {
     return (
       <>
-        <h1>Done</h1>
-        <h1>Time :{finishTime}</h1>
+        <h1>You found everyone !</h1>
+        <h1>Time : {finishTime}</h1>
       </>
     );
   }
   return (
     <>
       <Timer intervalRef={intervalRef}></Timer>
-
       <div
         id="imgContainer"
         className={styles.imgContainer}

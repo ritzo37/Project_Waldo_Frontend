@@ -5,6 +5,7 @@ import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import AlreadyLoggedIn from "./pages/AlreadyLoggedIn";
 import LeaderBoard from "./pages/LeaderBoard";
+import Home from "./pages/Home";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,9 +18,13 @@ const router = createBrowserRouter([
       },
       { path: "/log-in", element: <LogIn></LogIn> },
       { path: "/leaderboard", element: <LeaderBoard></LeaderBoard> },
+      { index: true, element: <Home></Home> },
+      {
+        path: "/already-logged-in",
+        element: <AlreadyLoggedIn></AlreadyLoggedIn>,
+      },
     ],
   },
-  { path: "/already-logged-in", element: <AlreadyLoggedIn></AlreadyLoggedIn> },
 ]);
 
 export default router;

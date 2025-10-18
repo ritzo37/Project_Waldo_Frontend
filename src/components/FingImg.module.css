@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.findImagesContainer {
+  display: flex;
+  gap: 10px;
+  /* border: 2px solid black; */
+  width: fit-content;
+  padding: 20px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.findImagesContainer img {
+  height: 100px;
+  width: 100px;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
