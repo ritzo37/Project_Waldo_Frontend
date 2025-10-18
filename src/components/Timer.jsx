@@ -3,7 +3,11 @@ import { useState } from "react";
 function Timer({ intervalRef }) {
   const [startTime, setStartTime] = useState(0);
   const [nowTime, setNowTime] = useState(0);
+  const [buttonState, setButtonState] = useState(false);
   async function handleStart() {
+    setButtonState(true);
+    const imgContainer = document.getElementById("imgContainer");
+    imgContainer.style.display = "block";
     const url = import.meta.env.VITE_BASEURL + "/start";
     const currTime = Date.now();
     await fetch(url, { credentials: "include", method: "get" });
@@ -18,7 +22,9 @@ function Timer({ intervalRef }) {
   return (
     <>
       <h1>{currTime}</h1>
-      <button onClick={handleStart}>Start</button>
+      <button onClick={handleStart} id="start-btn" disabled={buttonState}>
+        Start
+      </button>
     </>
   );
 }

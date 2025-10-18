@@ -4,6 +4,7 @@ import App from "./App";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import AlreadyLoggedIn from "./pages/AlreadyLoggedIn";
+import LeaderBoard from "./pages/LeaderBoard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       { path: "/log-in", element: <LogIn></LogIn> },
+      { path: "/leaderboard", element: <LeaderBoard></LeaderBoard> },
     ],
   },
   { path: "/already-logged-in", element: <AlreadyLoggedIn></AlreadyLoggedIn> },

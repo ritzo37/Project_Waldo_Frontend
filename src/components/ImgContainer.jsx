@@ -4,13 +4,20 @@ import styles from "./ImgContainer.module.css";
 import { useState, useRef, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
-function ImgContainer({ itemsToSearch }) {
+function ImgContainer({
+  itemsToSearch,
+  item1Status,
+  item2Status,
+  item3Status,
+  changeItem1Status,
+  changeItem2Status,
+  changeItem3Status,
+}) {
   const [toggle, setToggle] = useState(false);
   const [cords, setCords] = useState({ xCord: 0, yCord: 0 });
+  const [pointerCords, setPointerCords] = useState({ xCord: 0, yCord: 0 });
   const intervalRef = useRef(null);
-  const [item1Status, changeItem1Status] = useState(false);
-  const [item2Status, changeItem2Status] = useState(false);
-  const [item3Status, changeItem3Status] = useState(false);
+
   const [finishTime, changeFinishTime] = useState();
   const [imgCords, setImgCords] = useState({ cordX: 0, cordY: 0 });
 
@@ -57,10 +64,10 @@ function ImgContainer({ itemsToSearch }) {
     const currY = e.clientY - currTop;
     let xCord = parseInt((currX / currHeight) * 1000);
     let yCord = parseInt((currY / currWidth) * 1000);
-    let PageX = e.pageX;
-    let PageY = e.pageY;
-    setCords({ xCord: PageX, yCord: PageY });
+    console.log(xCord + " " + yCord);
+    setCords({ xCord: currX, yCord: currY });
     setImgCords({ cordX: xCord, cordY: yCord });
+    setPointerCords({ xCord: currX - 10, yCord: currY - 10 });
     setToggle(!toggle);
   }
 
@@ -100,8 +107,22 @@ function ImgContainer({ itemsToSearch }) {
   return (
     <>
       <Timer intervalRef={intervalRef}></Timer>
-      <div className={styles.imgContainer} onClick={(e) => handleClick(e)}>
-        <img src={islandImage} className={styles.img} />{" "}
+
+      <div
+        id="imgContainer"
+        className={styles.imgContainer}
+        onClick={(e) => handleClick(e)}
+      >
+        {toggle === true && (
+          <div
+            className={styles.testingDiv}
+            style={{
+              top: `${pointerCords.yCord}px`,
+              left: `${pointerCords.xCord}px`,
+            }}
+          ></div>
+        )}
+        <img src={islandImage} className={styles.img} />
         {toggle === true && (
           <ul
             id="absDiv"
