@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const signUpUrl = import.meta.env.VITE_BASEURL + "/sign-up";
 export default function SignUp() {
   const [username, setUsername] = useState("");
@@ -21,6 +22,7 @@ export default function SignUp() {
       console.log(data.errors);
       setErrors(data.errors);
     } else {
+      toast.success("Signed up");
       navigate("/");
     }
   }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 const logInUrl = import.meta.env.VITE_BASEURL + "/log-in";
 export default function LogIn() {
@@ -28,6 +29,7 @@ export default function LogIn() {
     } else {
       const token = data.token;
       localStorage.setItem("token", JSON.stringify(token));
+      toast.success("Logged in");
       navigate("/");
     }
   }

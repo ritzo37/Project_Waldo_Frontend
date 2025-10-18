@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 export default function App() {
   return (
     <>
@@ -8,6 +9,7 @@ export default function App() {
         <Link to="/sign-up">SignUp</Link>
         <Link to="/log-in">LogIn</Link>
       </div>
+      <ToastContainer position="top-right" autoClose={2000} />
       <Outlet></Outlet>
     </>
   );

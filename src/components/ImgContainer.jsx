@@ -15,12 +15,27 @@ function ImgContainer({ itemsToSearch }) {
   const [imgCords, setImgCords] = useState({ cordX: 0, cordY: 0 });
 
   useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("token"));
     const stop = async () => {
       const url = import.meta.env.VITE_BASEURL + "/stop";
-      const data = await fetch(url, { credentials: "include", method: "get" });
-      const time = await data.json();
-      changeFinishTime(time);
-      clearInterval(intervalRef.current);
+      if (token) {
+        const data = await fetch(url, {
+          credentials: "include",
+          method: "get",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const time = await data.json();
+        changeFinishTime(time);
+        clearInterval(intervalRef.current);
+      } else {
+        const data = await fetch(url, {
+          credentials: "include",
+          method: "get",
+        });
+        const time = await data.json();
+        changeFinishTime(time);
+        clearInterval(intervalRef.current);
+      }
     };
     if (item1Status && item2Status && item3Status) {
       stop();
