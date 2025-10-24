@@ -6,11 +6,23 @@ export default function App() {
     <>
       <header className={styles.header}>
         <h1>Project Waldo</h1>
-        <Link to="/">Home</Link>
-        <Link to="/img-page">Game</Link>
-        <Link to="/sign-up">SignUp</Link>
-        <Link to="/log-in">LogIn</Link>
-        <Link to="/leaderboard">LeaderBoard</Link>
+        <div className={styles.linkContainer}>
+          <Link className={styles.link} to="/">
+            Home
+          </Link>
+          <Link className={styles.link} to="/img-page">
+            Game
+          </Link>
+          <Link className={styles.link} to="/sign-up">
+            SignUp
+          </Link>
+          <Link className={styles.link} to="/log-in">
+            LogIn
+          </Link>
+          <Link className={styles.link} to="/leaderboard">
+            LeaderBoard
+          </Link>
+        </div>
       </header>
       <Outlet></Outlet>
       <ToastContainer position="top-right" autoClose={2000} />

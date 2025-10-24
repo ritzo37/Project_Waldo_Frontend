@@ -45,14 +45,14 @@ export default function LeaderBoard() {
                   <td className={styles.loggedInUserId}>
                     {currEntry.username}(you)
                   </td>
-                  <td>{currEntry.score}</td>
+                  <td>{currEntry.score ? currEntry.score : "-"}</td>
                 </tr>
               );
             } else {
               return (
                 <tr key={currEntry.userId}>
                   <td>{currEntry.username}</td>
-                  <td>{currEntry.score}</td>
+                  <td>{currEntry.score ? currEntry.score : "-"}</td>
                 </tr>
               );
             }

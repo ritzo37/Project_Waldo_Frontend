@@ -12,12 +12,18 @@
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 .findImagesContainer img {
-  height: 100px;
-  width: 100px;
+  object-fit: contain;
 }
 
 .heading {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (min-width: 500px) {
+  .findImagesContainer img {
+    width: 100px;
+    height: auto;
+  }
 }

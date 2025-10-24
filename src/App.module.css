@@ -6,3 +6,17 @@
   align-items: center;
   margin: 2%;
 }
+.linkContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.link {
+  text-decoration: none;
+  color: black;
+}
+.link:hover {
+  text-decoration-line: underline;
+}

@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./AlreadyLoggedIn.module.css";
+import { toast } from "react-toastify";
 function AlreadyLoggedIn() {
   let navigate = useNavigate();
   function handeLogout() {
     localStorage.removeItem("token");
+    toast.success("Logged out");
     navigate("/");
   }
   function handleHomeClick() {
