@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./AlreadyLoggedIn.module.css";
 import { toast } from "react-toastify";
+const logoutUrl = import.meta.env.VITE_BASEURL + "/logout";
 function AlreadyLoggedIn() {
   let navigate = useNavigate();
-  function handeLogout() {
-    localStorage.removeItem("token");
+  async function handeLogout() {
+    await fetch(logoutUrl, {
+      method: "GET",
+      credentials: "include",
+    });
     toast.success("Logged out");
     navigate("/");
   }

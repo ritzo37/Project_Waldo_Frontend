@@ -3,17 +3,25 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import styles from "./LogIn.module.css";
 const logInUrl = import.meta.env.VITE_BASEURL + "/log-in";
+const logInCheckUrl = import.meta.env.VITE_BASEURL + "/login-status";
 export default function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      navigate("/already-logged-in");
-      return;
-    }
-  });
+    const func = async () => {
+      const response = await fetch(logInCheckUrl, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (response.status == 200) {
+        navigate("/already-logged-in");
+      }
+    };
+    func();
+  }, [navigate]);
   async function handleFormSubmit(e) {
     e.preventDefault();
     const response = await fetch(logInUrl, {
@@ -28,8 +36,6 @@ export default function LogIn() {
     if (response.status !== 200) {
       setError(data.message);
     } else {
-      const token = data.token;
-      localStorage.setItem("token", JSON.stringify(token));
       toast.success("Logged in");
       navigate("/");
     }

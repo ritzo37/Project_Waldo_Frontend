@@ -1,32 +1,31 @@
 import { useEffect, useState } from "react";
 const leaderboardUrl = import.meta.env.VITE_BASEURL + "/allUserScores";
 import styles from "./LeaderBoard.module.css";
+const logInCheckUrl = import.meta.env.VITE_BASEURL + "/login-status";
 export default function LeaderBoard() {
   const [leaderBoardEntries, setLeaderBoardEntries] = useState([]);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("token"));
-    if (token) {
-      const init = async () => {
-        const response = await fetch(leaderboardUrl, {
-          method: "get",
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const responseVal = await response.json();
+    const func = async () => {
+      const response = await fetch(logInCheckUrl, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      const responseEntries = await fetch(leaderboardUrl, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      const responseVal = await responseEntries.json();
+      if (response.status == 200) {
         setLeaderBoardEntries(responseVal.data);
         setUserLoggedIn(true);
-      };
-      init();
-    } else {
-      const init = async () => {
-        const response = await fetch(leaderboardUrl, {
-          method: "get",
-        });
-        const responseVal = await response.json();
+      } else {
         setLeaderBoardEntries(responseVal.data);
-      };
-      init();
-    }
+      }
+    };
+    func();
   }, []);
   return (
     <div className={styles.tableContainer}>
@@ -34,8 +33,10 @@ export default function LeaderBoard() {
 
       <table>
         <thead>
-          <th>UserName</th>
-          <th>Score</th>
+          <tr>
+            <th>UserName</th>
+            <th>Score</th>
+          </tr>
         </thead>
         <tbody>
           {leaderBoardEntries.map((currEntry) => {
