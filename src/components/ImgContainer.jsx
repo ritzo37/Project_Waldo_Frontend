@@ -22,27 +22,16 @@ function ImgContainer({
   const [imgCords, setImgCords] = useState({ cordX: 0, cordY: 0 });
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("token"));
     const stop = async () => {
       const url = import.meta.env.VITE_BASEURL + "/stop";
-      if (token) {
-        const data = await fetch(url, {
-          credentials: "include",
-          method: "get",
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const time = await data.json();
-        changeFinishTime(time);
-        clearInterval(intervalRef.current);
-      } else {
-        const data = await fetch(url, {
-          credentials: "include",
-          method: "get",
-        });
-        const time = await data.json();
-        changeFinishTime(time);
-        clearInterval(intervalRef.current);
-      }
+      const data = await fetch(url, {
+        credentials: "include",
+        method: "GET",
+      });
+      const time = await data.json();
+      console.log(time);
+      changeFinishTime(time);
+      clearInterval(intervalRef.current);
     };
     if (item1Status && item2Status && item3Status) {
       stop();
@@ -64,7 +53,6 @@ function ImgContainer({
     const currY = e.clientY - currTop;
     let xCord = parseInt((currX / currHeight) * 1000);
     let yCord = parseInt((currY / currWidth) * 1000);
-    console.log(xCord + " " + yCord);
     setCords({ xCord: currX, yCord: currY });
     setImgCords({ cordX: xCord, cordY: yCord });
     setPointerCords({ xCord: currX - 10, yCord: currY - 10 });

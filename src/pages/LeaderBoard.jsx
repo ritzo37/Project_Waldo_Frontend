@@ -16,14 +16,11 @@ export default function LeaderBoard() {
         method: "GET",
         credentials: "include",
       });
-
       const responseVal = await responseEntries.json();
       if (response.status == 200) {
-        setLeaderBoardEntries(responseVal.data);
         setUserLoggedIn(true);
-      } else {
-        setLeaderBoardEntries(responseVal.data);
       }
+      setLeaderBoardEntries(responseVal.data);
     };
     func();
   }, []);
