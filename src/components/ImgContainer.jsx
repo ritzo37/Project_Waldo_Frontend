@@ -87,7 +87,7 @@ function ImgContainer({
   if (item1Status && item2Status && item3Status) {
     return (
       <>
-        <h1>You found everyone !</h1>./img/island.png";
+        <h1>You found everyone !</h1>
         <h1>Time : {finishTime}</h1>
       </>
     );
