@@ -10,13 +10,13 @@ export default function FingImg({
       <div className={styles.findImagesContainer}>
         <h1 className={styles.heading}>Things to Find : </h1>
         {item1Status === false && (
-          <img src={`src/img/${itemsToSearch[0]}.png`}></img>
+          <img src={`/img/${itemsToSearch[0]}.png`}></img>
         )}
         {item2Status === false && (
-          <img src={`src/img/${itemsToSearch[1]}.png`}></img>
+          <img src={`/img/${itemsToSearch[1]}.png`}></img>
         )}
         {item3Status === false && (
-          <img src={`src/img/${itemsToSearch[2]}.png`}></img>
+          <img src={`/img/${itemsToSearch[2]}.png`}></img>
         )}
       </div>
     </div>

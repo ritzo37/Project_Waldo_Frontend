@@ -122,21 +122,21 @@ function ImgContainer({
             <div className={styles.choiceContainer}>
               {!item1Status && (
                 <img
-                  src={`src/img/${itemsToSearch[0]}.png`}
+                  src={`/img/${itemsToSearch[0]}.png`}
                   className={styles.choiceImg}
                   onClick={() => handleClickOnItem(itemsToSearch[0], 1)}
                 />
               )}
               {!item2Status && (
                 <img
-                  src={`src/img/${itemsToSearch[1]}.png`}
+                  src={`/img/${itemsToSearch[1]}.png`}
                   className={styles.choiceImg}
                   onClick={() => handleClickOnItem(itemsToSearch[1], 2)}
                 />
               )}
               {!item3Status && (
                 <img
-                  src={`src/img/${itemsToSearch[2]}.png`}
+                  src={`/img/${itemsToSearch[2]}.png`}
                   className={styles.choiceImg}
                   onClick={() => handleClickOnItem(itemsToSearch[2], 3)}
                 />
