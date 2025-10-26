@@ -1,4 +1,4 @@
-import islandImage from "../img/island.png";
+import islandImage from "/img/island.png";
 import Timer from "./Timer";
 import styles from "./ImgContainer.module.css";
 import { useState, useRef, useEffect } from "react";
@@ -87,7 +87,7 @@ function ImgContainer({
   if (item1Status && item2Status && item3Status) {
     return (
       <>
-        <h1>You found everyone !</h1>
+        <h1>You found everyone !</h1>./img/island.png";
         <h1>Time : {finishTime}</h1>
       </>
     );
@@ -122,21 +122,21 @@ function ImgContainer({
             <div className={styles.choiceContainer}>
               {!item1Status && (
                 <img
-                  src={`/src/img/${itemsToSearch[0]}.png`}
+                  src={`src/img/${itemsToSearch[0]}.png`}
                   className={styles.choiceImg}
                   onClick={() => handleClickOnItem(itemsToSearch[0], 1)}
                 />
               )}
               {!item2Status && (
                 <img
-                  src={`/src/img/${itemsToSearch[1]}.png`}
+                  src={`src/img/${itemsToSearch[1]}.png`}
                   className={styles.choiceImg}
                   onClick={() => handleClickOnItem(itemsToSearch[1], 2)}
                 />
               )}
               {!item3Status && (
                 <img
-                  src={`/src/img/${itemsToSearch[2]}.png`}
+                  src={`src/img/${itemsToSearch[2]}.png`}
                   className={styles.choiceImg}
                   onClick={() => handleClickOnItem(itemsToSearch[2], 3)}
                 />
