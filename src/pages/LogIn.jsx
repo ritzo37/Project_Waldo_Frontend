@@ -8,6 +8,7 @@ export default function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [pageState, setPageState] = useState("loading");
   const navigate = useNavigate();
   useEffect(() => {
     const func = async () => {
@@ -15,9 +16,10 @@ export default function LogIn() {
         method: "GET",
         credentials: "include",
       });
-
       if (response.status == 200) {
         navigate("/already-logged-in");
+      } else {
+        setPageState("loaded");
       }
     };
     func();
@@ -37,8 +39,13 @@ export default function LogIn() {
       setError(data.message);
     } else {
       toast.success("Logged in");
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
+  }
+  if (pageState === "loading") {
+    return <h1 className={styles.loading}>Loading...</h1>;
   }
   return (
     <div className={styles.formContainer}>
@@ -55,7 +62,7 @@ export default function LogIn() {
         />
         <label htmlFor="password">Password</label>
         <input
-          type="text"
+          type="password"
           name="password"
           id="password"
           value={password}
@@ -63,6 +70,7 @@ export default function LogIn() {
         />
         <button>Submit</button>
       </form>
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 }

@@ -28,3 +28,8 @@
   background: none;
   padding: 5px;
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+}

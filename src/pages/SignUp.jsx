@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import styles from "./SignUp.module.css";
 const signUpUrl = import.meta.env.VITE_BASEURL + "/sign-up";
 export default function SignUp() {
@@ -24,46 +24,51 @@ export default function SignUp() {
       setErrors(data.errors);
     } else {
       toast.success("Signed up");
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 20000);
     }
   }
   return (
-    <div className={styles.formContainer}>
-      <h1>Sign Up</h1>
-      {errors.length > 0 && (
-        <ul>
-          {errors.map((currError) => {
-            return <li>{currError.msg}</li>;
-          })}
-        </ul>
-      )}
-      <form onSubmit={handleFormSubmit} className={styles.form}>
-        <label htmlFor="username">Username</label>{" "}
-        <input
-          type="text"
-          name="username"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label htmlFor="password">Password </label>
-        <input
-          type="text"
-          name="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <label htmlFor="confirm-password">Confirm Password</label>
-        <input
-          type="text"
-          name="confirm-password"
-          id="confirm-password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassWord(e.target.value)}
-        />
-        <button>Submit</button>
-      </form>
-    </div>
+    <>
+      <div className={styles.formContainer}>
+        <h1>Sign Up</h1>
+        {errors.length > 0 && (
+          <ul>
+            {errors.map((currError) => {
+              return <li>{currError.msg}</li>;
+            })}
+          </ul>
+        )}
+        <form onSubmit={handleFormSubmit} className={styles.form}>
+          <label htmlFor="username">Username</label>{" "}
+          <input
+            type="text"
+            name="username"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <label htmlFor="password">Password </label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <label htmlFor="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            name="confirm-password"
+            id="confirm-password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassWord(e.target.value)}
+          />
+          <button>Submit</button>
+        </form>
+      </div>
+      <ToastContainer position="top-right" autoClose={2000} />
+    </>
   );
 }

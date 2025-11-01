@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./AlreadyLoggedIn.module.css";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 const logoutUrl = import.meta.env.VITE_BASEURL + "/logout";
 function AlreadyLoggedIn() {
   let navigate = useNavigate();
@@ -10,7 +10,9 @@ function AlreadyLoggedIn() {
       credentials: "include",
     });
     toast.success("Logged out");
-    navigate("/");
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   }
   function handleHomeClick() {
     navigate("/");
@@ -22,6 +24,7 @@ function AlreadyLoggedIn() {
         <button onClick={() => handeLogout()}>Logout</button>
         <button onClick={handleHomeClick}>Home</button>
       </div>
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 }

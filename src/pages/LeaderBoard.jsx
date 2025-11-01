@@ -5,6 +5,7 @@ const logInCheckUrl = import.meta.env.VITE_BASEURL + "/login-status";
 export default function LeaderBoard() {
   const [leaderBoardEntries, setLeaderBoardEntries] = useState([]);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [pageState, changePageState] = useState("loading");
   useEffect(() => {
     const func = async () => {
       const response = await fetch(logInCheckUrl, {
@@ -20,10 +21,14 @@ export default function LeaderBoard() {
       if (response.status == 200) {
         setUserLoggedIn(true);
       }
+      changePageState("loaded");
       setLeaderBoardEntries(responseVal.data);
     };
     func();
   }, []);
+  if (pageState === "loading") {
+    return <h1 className={styles.loading}>Loading...</h1>;
+  }
   return (
     <div className={styles.tableContainer}>
       <h1>LeaderBoard</h1>

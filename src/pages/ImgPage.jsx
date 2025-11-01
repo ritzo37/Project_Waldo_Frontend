@@ -8,6 +8,7 @@ export default function ImgPage() {
   const [item1Status, changeItem1Status] = useState(false);
   const [item2Status, changeItem2Status] = useState(false);
   const [item3Status, changeItem3Status] = useState(false);
+  const [state, changeState] = useState("loading");
   useEffect(() => {
     const init = async () => {
       const response = await fetch(itemsUrl);
@@ -17,10 +18,14 @@ export default function ImgPage() {
       data.dataToSend.map((currItem) => {
         items.push(currItem.name);
       });
+      changeState("loaded");
       setItemsToSearch(items);
     };
     init();
   }, []);
+  if (state === "loading") {
+    return <h1 className={styles.loading}>Loading...</h1>;
+  }
   return (
     <div className={styles.container}>
       <FingImg
