@@ -6,10 +6,12 @@ import SignUp from "./pages/SignUp";
 import AlreadyLoggedIn from "./pages/AlreadyLoggedIn";
 import LeaderBoard from "./pages/LeaderBoard";
 import Home from "./pages/Home";
+import ErrorPage from "./pages/errorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       { path: "/img-page", element: <ImgPage></ImgPage> },
       {
