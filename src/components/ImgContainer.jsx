@@ -21,7 +21,7 @@ function ImgContainer({
   const intervalRef = useRef(null);
   const [imageState, setImageState] = useState("none");
 
-  const [finishTime, changeFinishTime] = useState();
+  const [finishTime, changeFinishTime] = useState(0);
   const [imgCords, setImgCords] = useState({ cordX: 0, cordY: 0 });
 
   useEffect(() => {
