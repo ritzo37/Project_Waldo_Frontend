@@ -6,7 +6,7 @@ export default function FingImg({
   itemsToSearch,
 }) {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="thingsToFindDiv">
       <div className={styles.findImagesContainer}>
         <h1 className={styles.heading}>Things to Find : </h1>
         {item1Status === false && (

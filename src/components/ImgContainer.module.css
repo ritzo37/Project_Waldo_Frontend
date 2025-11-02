@@ -51,3 +51,8 @@
     border: 3px solid red;
   }
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+}

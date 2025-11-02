@@ -1,5 +1,6 @@
 import islandImage from "/img/island.png";
 import Timer from "./Timer";
+import FingImg from "../components/FingImg";
 import styles from "./ImgContainer.module.css";
 import { useState, useRef, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,7 +17,9 @@ function ImgContainer({
   const [toggle, setToggle] = useState(false);
   const [cords, setCords] = useState({ xCord: 0, yCord: 0 });
   const [pointerCords, setPointerCords] = useState({ xCord: 0, yCord: 0 });
+  const [pageState, setPageState] = useState("loaded");
   const intervalRef = useRef(null);
+  const [imageState, setImageState] = useState("none");
 
   const [finishTime, changeFinishTime] = useState();
   const [imgCords, setImgCords] = useState({ cordX: 0, cordY: 0 });
@@ -29,11 +32,12 @@ function ImgContainer({
         method: "GET",
       });
       const time = await data.json();
-      console.log(time);
+      setPageState("loaded");
       changeFinishTime(time);
       clearInterval(intervalRef.current);
     };
     if (item1Status && item2Status && item3Status) {
+      setPageState("loading");
       stop();
     }
   }, [item1Status, item2Status, item3Status]);
@@ -83,6 +87,9 @@ function ImgContainer({
       toast.error("Oops please try again!");
     }
   }
+  if (pageState === "loading") {
+    return <h1>Loading the results...</h1>;
+  }
 
   if (item1Status && item2Status && item3Status) {
     return (
@@ -94,11 +101,18 @@ function ImgContainer({
   }
   return (
     <>
-      <Timer intervalRef={intervalRef}></Timer>
+      <FingImg
+        item1Status={item1Status}
+        item2Status={item2Status}
+        item3Status={item3Status}
+        itemsToSearch={itemsToSearch}
+      ></FingImg>
+      <Timer intervalRef={intervalRef} setImageState={setImageState}></Timer>
       <div
         id="imgContainer"
         className={styles.imgContainer}
         onClick={(e) => handleClick(e)}
+        style={{ display: `${imageState}` }}
       >
         {toggle === true && (
           <div

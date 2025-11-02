@@ -1,20 +1,24 @@
 import { useState } from "react";
 import styles from "./Timer.module.css";
-function Timer({ intervalRef }) {
+function Timer({ intervalRef, setImageState }) {
   const [startTime, setStartTime] = useState(0);
   const [nowTime, setNowTime] = useState(0);
   const [buttonState, setButtonState] = useState(false);
   async function handleStart() {
     setButtonState(true);
-    const imgContainer = document.getElementById("imgContainer");
-    imgContainer.style.display = "block";
     const url = import.meta.env.VITE_BASEURL + "/start";
-    const currTime = Date.now();
-    await fetch(url, { credentials: "include", method: "get" });
-    setStartTime(currTime);
-    setNowTime(currTime);
+    const response = await fetch(url, {
+      credentials: "include",
+      method: "get",
+    });
+    const data = await response.json();
+    setStartTime(data.startTime);
+    setNowTime(data.startTime);
+    setImageState("block");
     intervalRef.current = setInterval(() => {
-      setNowTime(Date.now());
+      setNowTime((prev) => {
+        return prev + 10;
+      });
     }, 10);
   }
 

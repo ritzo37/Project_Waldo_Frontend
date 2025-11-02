@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ImgContainer from "../components/ImgContainer";
-import FingImg from "../components/FingImg";
 import styles from "./ImgPage.module.css";
 const itemsUrl = import.meta.env.VITE_BASEURL + "/getItems";
 export default function ImgPage() {
@@ -28,12 +27,6 @@ export default function ImgPage() {
   }
   return (
     <div className={styles.container}>
-      <FingImg
-        itemsToSearch={itemsToSearch}
-        item1Status={item1Status}
-        item2Status={item2Status}
-        item3Status={item3Status}
-      ></FingImg>
       <ImgContainer
         itemsToSearch={itemsToSearch}
         item1Status={item1Status}
@@ -42,6 +35,7 @@ export default function ImgPage() {
         changeItem1Status={changeItem1Status}
         changeItem2Status={changeItem2Status}
         changeItem3Status={changeItem3Status}
+        changeState={changeState}
       ></ImgContainer>
     </div>
   );
